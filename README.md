@@ -20,6 +20,25 @@ npm run start:dev
 http://localhost:3000
 ```
 
+## Database
+Uses MySQL with Prisma ORM.
+
+### Setup database
+1. Create database:
+```sql
+CREATE DATABASE crudlog;
+```
+2. Set environment variables:
+```text
+DATABASE_URL="mysql://root:***@localhost:3306/crudlog"
+```
+3. Run migrations:
+```bash
+npx prisma migrate dev
+```
+
 ## Stack
 - Node.js + NestJS
 - TypeScript
+- MySQL
+- Prisma ORM
