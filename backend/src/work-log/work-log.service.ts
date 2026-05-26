@@ -1,49 +1,35 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateWorkLogDto } from './dto/create-work-log.dto';
 
 @Injectable()
 export class WorkLogService {
-  private records: any[] = [];
-  private id = 1;
+  constructor(private prisma: PrismaService) {}
 
-  getAll() {
-    return this.records;
+  async getAll() {
+    return this.prisma.workLog.findMany();
   }
 
-  addRecord(dto: CreateWorkLogDto) {
-    const record = {
-      id: this.id++,
-      ...dto,
-      date: dto.date ?? new Date().toISOString(),
-    };
-
-    this.records.push(record);
-    return record;
+  async addRecord(dto: CreateWorkLogDto) {
+    return this.prisma.workLog.create({
+      data: {
+        category: dto.category,
+        amount: dto.amount,
+        date: dto.date,
+      },
+    });
   }
 
-  deleteRecord(id: number) {
-    const index = this.records.findIndex((r) => r.id === id);
-
-    if (index === -1) {
-      return { message: 'Record not found' };
-    }
-
-    const deleted = this.records.splice(index, 1);
-    return deleted[0];
+  async deleteRecord(id: number) {
+    return this.prisma.workLog.delete({
+      where: { id },
+    });
   }
 
-  updateRecord(id: number, dto: any) {
-    const index = this.records.findIndex((r) => r.id === id);
-  
-    if (index === -1) {
-      return { message: 'Record not found' };
-    }
-  
-    this.records[index] = {
-      ...this.records[index],
-      ...dto,
-    };
-  
-    return this.records[index];
-  }  
+  async updateRecord(id: number, dto: any) {
+    return this.prisma.workLog.update({
+      where: { id },
+      data: dto,
+    });
+  }
 }
