@@ -13,8 +13,10 @@ export class WorkLogService {
   async addRecord(dto: CreateWorkLogDto) {
     return this.prisma.workLog.create({
       data: {
-        category: dto.category,
-        amount: dto.amount,
+        workType: dto.workType,
+        volume: dto.volume,
+        unit: dto.unit,
+        performer: dto.performer,
         date: dto.date,
       },
     });
