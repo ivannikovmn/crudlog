@@ -37,8 +37,29 @@ DATABASE_URL="mysql://root:***@localhost:3306/crudlog"
 npx prisma migrate dev
 ```
 
+### Frontend
+```bash
+cd frontend
+npm install
+```
+
+### Run frontend
+```
+npm run dev
+```
+
+### Frontend URL
+
+```text
+http://localhost:5173
+```
+
+## Notes
+Frontend and backend should be run separately.
+
 ## Stack
 - Node.js + NestJS
 - TypeScript
+- React + Vite
 - MySQL
 - Prisma ORM
