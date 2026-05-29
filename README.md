@@ -57,9 +57,11 @@ http://localhost:5173
 ## Notes
 Frontend and backend should be run separately.
 
-## Stack
+## Stack*
  Node.js + NestJS (REST API with CORS)
 - TypeScript
 - React + Vite
 - MySQL
 - Prisma ORM
+
+* Stack chosen for clear separation of frontend/backend, type safety and fast prototyping.
