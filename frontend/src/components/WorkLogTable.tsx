@@ -2,9 +2,10 @@ import type { WorkLog } from "../types/worklog";
 
 type Props = {
   data: WorkLog[];
+  onDelete: (id: number) => void;
 };
 
-export default function WorkLogTable({ data }: Props) {
+export default function WorkLogTable({ data, onDelete }: Props) {
   return (
     <table>
       <thead>
@@ -15,6 +16,7 @@ export default function WorkLogTable({ data }: Props) {
           <th>Unit</th>
           <th>Performer</th>
           <th>Date</th>
+          <th>Actions</th>
         </tr>
       </thead>
 
@@ -27,6 +29,12 @@ export default function WorkLogTable({ data }: Props) {
             <td>{item.unit}</td>
             <td>{item.performer}</td>
             <td>{new Date(item.date).toLocaleString()}</td>
+
+            <td>
+              <button onClick={() => onDelete(item.id)}>
+                Delete
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

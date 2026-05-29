@@ -30,8 +30,7 @@ export default function CreateWorkLogForm({ onCreated }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Create Work Log</h2>
+    <form onSubmit={handleSubmit}>      
 
       <input
         placeholder="Work type"
@@ -58,7 +57,7 @@ export default function CreateWorkLogForm({ onCreated }: Props) {
         onChange={(e) => setPerformer(e.target.value)}
       />
 
-      <button type="submit">Add</button>
+      <button type="submit"> Add entry</button>
     </form>
   );
 }

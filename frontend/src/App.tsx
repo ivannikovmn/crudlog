@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import WorkLogTable from "./components/WorkLogTable";
 import CreateWorkLogForm from "./components/CreateWorkLogForm";
-import { getWorkLogs } from "./api/worklog";
+import { deleteWorkLog, getWorkLogs } from "./api/worklog";
+
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -14,13 +15,21 @@ export default function App() {
     fetchData();
   }, []);
 
+  const handleDelete = async (id: number) => {
+    await deleteWorkLog(id);
+    fetchData(); // перезагрузка списка
+  };
+
   return (
-    <div>
-      <h1>Work Log</h1>
+    <div className="page">
+      <div className="container">
+        <h1>CRUD Log</h1>
 
-      <CreateWorkLogForm onCreated={fetchData} />
+        <CreateWorkLogForm onCreated={fetchData} />
 
-      <WorkLogTable data={data} />
+        <WorkLogTable data={data} onDelete={handleDelete} />
+        
+      </div>
     </div>
   );
 }
