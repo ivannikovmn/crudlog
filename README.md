@@ -58,7 +58,7 @@ http://localhost:5173
 Frontend and backend should be run separately.
 
 ## Stack
-- Node.js + NestJS
+ Node.js + NestJS (REST API with CORS)
 - TypeScript
 - React + Vite
 - MySQL

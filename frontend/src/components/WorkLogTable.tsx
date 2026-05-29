@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
-import { getWorkLogs } from "../api/worklog";
 import type { WorkLog } from "../types/worklog";
 
-export default function WorkLogTable() {
-  const [data, setData] = useState<WorkLog[]>([]);
+type Props = {
+  data: WorkLog[];
+};
 
-  useEffect(() => {
-    getWorkLogs().then(setData);
-  }, []);
-
+export default function WorkLogTable({ data }: Props) {
   return (
     <table>
       <thead>
